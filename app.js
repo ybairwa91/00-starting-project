@@ -5,12 +5,28 @@ const express = require('express');
 const app = express();
 
 app.get('/', function (req, res) {
-  res.send('<h1>Hello world</h1>');
+  const htmlIndexPath = path.join(__dirname, 'views', 'index.html');
+  res.sendFile(htmlIndexPath);
 });
 
-app.get('/restaurents', function (req, res) {
-  const htmlFilePath = path.join(__dirname, 'views', 'restaurents.html');
-  res.sendFile(htmlFilePath);
+app.get('/restaurants', function (req, res) {
+  const htmlRestaurantPath = path.join(__dirname, 'views', 'restaurants.html');
+  res.sendFile(htmlRestaurantPath);
 });
-    
+
+app.get('/about', function (req, res) {
+  const htmlAboutPath = path.join(__dirname, 'views', 'about.html');
+  res.sendFile(htmlAboutPath);
+});
+
+app.get('/recommend', function (req, res) {
+  const htmlRecommendPath = path.join(__dirname, 'views', 'recommend.html');
+  res.sendFile(htmlRecommendPath);
+});
+
+app.get('/confirm', function (req, res) {
+  const htmlConfirmPath = path.join(__dirname, 'views', 'confirm.html');
+  res.sendFile(htmlConfirmPath);
+});
+
 app.listen(3000);
