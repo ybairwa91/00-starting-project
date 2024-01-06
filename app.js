@@ -16,15 +16,22 @@ app.get('/', function (req, res) {
 });
 
 app.get('/restaurants', function (req, res) {
-  res.render('/restaurants');
+  const filePath = path.join(__dirname, 'data', 'restaurants.json');
+  const fileData = fs.readFileSync(filePath);
+  const storedRestaurant = JSON.parse(fileData);
+
+  res.render('restaurants', {
+    numberOfRestaurants: storedRestaurant.length,
+    restaurants: storedRestaurant,
+  });
 });
 
 app.get('/about', function (req, res) {
-  res.render('/about');
+  res.render('about');
 });
 
 app.get('/recommend', function (req, res) {
-  res.render('/recommend');
+  res.render('recommend');
 });
 
 app.post('/recommend', function (req, res) {
