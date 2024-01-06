@@ -5,28 +5,26 @@ const path = require('path');
 const express = require('express');
 
 const app = express();
+app.set('views', path.join(__dirname, 'views')); //place where find the template file
+app.set('view engine', 'ejs'); //set method set some express features basically(first argument==tell to view the engine,second tell the name of the engine)
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
-  const htmlIndexPath = path.join(__dirname, 'views', 'index.html');
-  res.sendFile(htmlIndexPath);
+  res.render('index');
 });
 
 app.get('/restaurants', function (req, res) {
-  const htmlRestaurantPath = path.join(__dirname, 'views', 'restaurants.html');
-  res.sendFile(htmlRestaurantPath);
+  res.render('/restaurants');
 });
 
 app.get('/about', function (req, res) {
-  const htmlAboutPath = path.join(__dirname, 'views', 'about.html');
-  res.sendFile(htmlAboutPath);
+  res.render('/about');
 });
 
 app.get('/recommend', function (req, res) {
-  const htmlRecommendPath = path.join(__dirname, 'views', 'recommend.html');
-  res.sendFile(htmlRecommendPath);
+  res.render('/recommend');
 });
 
 app.post('/recommend', function (req, res) {
@@ -40,8 +38,7 @@ app.post('/recommend', function (req, res) {
 });
 
 app.get('/confirm', function (req, res) {
-  const htmlConfirmPath = path.join(__dirname, 'views', 'confirm.html');
-  res.sendFile(htmlConfirmPath);
+  res.render('confirm');
 });
 
 app.listen(3000);
